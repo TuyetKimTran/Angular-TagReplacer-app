@@ -1,0 +1,81 @@
+#center-all {
+  /* Text zentrieren */
+  text-align: center;
+
+  /* Inhalt vertikal mittig platzieren */
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.inside {
+  /* Container horizontal mittig platzieren */
+  margin: auto;
+}
+
+
+h1 {
+  text-align: left; 
+  font-weight: 500; 
+}
+
+.formfield {
+  width: 478px;
+  margin: 0 auto; /* Center the form horizontally */
+  text-align: center; /* Center text inside the form */
+}
+textarea {
+  resize: vertical;
+  min-height: 100px; 
+
+}
+
+.formfield-width {
+  width: 100%;
+
+}
+
+.replacements-add-remove-button{
+  text-align: left; 
+}
+
+
+.replacement-label {
+  margin-right: 10px;
+
+}
+
+.add-button {
+  margin-right: 20px;
+}
+
+.replace-button {
+  margin-top: 70px;
+  margin-bottom: 20px;
+}
+
+
+.tag-row {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px; /* Adjust the gap between input fields */
+  width: 100%; /* Set the width of the input container */
+}
+
+
+/* Ändere die Schriftfarbe auf Schwarz von disabled Output */
+::ng-deep .mdc-text-field--disabled .mdc-text-field__input {
+  color: black !important; 
+}
+
+

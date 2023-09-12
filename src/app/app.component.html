@@ -1,0 +1,61 @@
+<div id="center-all">
+  <div class="inside">
+    <h1>Tag Replacer</h1>
+
+
+    <!-- Input Text Field -->
+    <form class="formfield">
+      <mat-form-field appearance="outline" class="formfield-width">
+        <mat-label>Input Text</mat-label>
+        <textarea  matInput [(ngModel)]="inputText" id="inputText" name="inputText"></textarea>
+      </mat-form-field>
+    </form>
+
+    <!-- Add and Remove Button  -->
+    <div>
+      <div class="replacements-add-remove-button">
+        <span class="replacement-label">Replacements</span>
+        <button mat-raised-button color="primary" class="add-button" (click)="addTag()">
+          Add
+        </button>
+        <button mat-raised-button color="primary" (click)="removeTag()">
+          Remove
+        </button>
+      </div>
+
+    <!-- Tag and Replacement Checkboxes  -->
+      <div *ngFor="let tagObj of tagList; let i = index" class="tag-row">
+        <mat-checkbox [(ngModel)]="tagObj.selected" id="tag{{i}}" name="tag{{i}}"></mat-checkbox>
+        <div class="input-container">
+          <mat-form-field appearance="outline" class="formfield-width">
+            <mat-label>Tag to replace</mat-label>
+            <input matInput [(ngModel)]="tagObj.tag" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="formfield-width">
+            <mat-label>Replacement value</mat-label>
+            <input matInput [(ngModel)]="tagObj.replacement" />
+          </mat-form-field>
+        </div>
+      </div>
+
+    <!-- Replace Button -->
+      <div class="replace-button">
+        <button mat-raised-button color="primary" (click)="replaceTags()">
+          Replace
+        </button>
+      </div>
+    </div>
+
+    <!-- Output Button -->
+      <!-- Output Field in a mat-form-field -->
+      <mat-form-field appearance="outline" class="formfield-width">
+        <mat-label>Output</mat-label>
+        <textarea matInput [(ngModel)]="outputText" disabled></textarea>
+      </mat-form-field>
+      
+    </div>
+  </div>
+
+<!-- 
+This text contains some {foo} tags that will be replaced. It supports \{escaping} and it ignores {unknown} tags and {invalid tags}. A literal backslash can be written as well: \\
+Wild \backslashes are removed. Even in front of a \\\\{tag} -->
