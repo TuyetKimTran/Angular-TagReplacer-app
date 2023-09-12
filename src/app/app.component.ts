@@ -11,16 +11,49 @@ export class AppComponent {
   outputText: string = ''; // Variable to store the modified text.
   inputs: { tag: string, replace: string }[] = [];
   // Method to modify the input text.
-  tagList: { tag: string, replacement: string, selected: boolean }[] = [];
+  // tagList: { tag: string, replacement: string, selected: boolean }[] = [];
+  // selectAll = false;
+  tagList: any[] = []; // Define your tag list here
+  selectAll: boolean = false; // Initialize selectAll to false
 
+  // Toggle select all checkboxes
+  toggleSelectAll() {
+    this.selectAll = !this.selectAll;
+  
+    this.tagList.forEach((tagObj) => (tagObj.selected = this.selectAll));
+
+  }
+  
+
+  checkStatus() {
+    const selectedCount = this.tagList.filter((tagObj) => tagObj.selected).length;
+    if (selectedCount == 0 ) {
+      this.selectAll = false;
+    } else {
+          this.selectAll = true;
+    }
+    console.log('selectAll:', this.selectAll);
+  }
+
+  
+  
+  // Add a new tag to the list
   addTag() {
     this.tagList.push({ tag: '', replacement: '', selected: false });
   }
 
+  // Remove the last tag from the list
   removeTag() {
     this.tagList.pop();
   }
 
+  // Function to determine if some checkboxes are selected
+  someComplete(): boolean {
+    const selectedCount = this.tagList.filter((tagObj) => tagObj.selected).length;
+    return selectedCount > 0 && selectedCount < this.tagList.length;
+
+  }
+  
     replaceTags() {
     let outputText = this.inputText;
   
