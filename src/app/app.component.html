@@ -2,7 +2,6 @@
   <div class="inside">
     <h1>Tag Replacer</h1>
 
-
     <!-- Input Text Field -->
     <form class="formfield">
       <mat-form-field appearance="outline" class="formfield-width">
@@ -22,7 +21,6 @@
           Remove
         </button>
       </div>
-
 
       <!-- Select All Button -->
       <div class="tag-row">
@@ -56,16 +54,11 @@
       </div>
     </div>
     
-    <!-- Output Button -->
       <!-- Output Field in a mat-form-field -->
       <mat-form-field appearance="outline" class="formfield-width">
         <mat-label>Output</mat-label>
         <textarea matInput [(ngModel)]="outputText" disabled></textarea>
       </mat-form-field>
-      
     </div>
   </div>
 
-<!-- 
-This text contains some {foo} tags that will be replaced. It supports \{escaping} and it ignores {unknown} tags and {invalid tags}. A literal backslash can be written as well: \\
-Wild \backslashes are removed. Even in front of a \\\\{tag} -->

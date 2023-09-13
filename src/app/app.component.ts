@@ -8,35 +8,24 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'myApp';
   inputText: string = '';
-  outputText: string = ''; // Variable to store the modified text.
+  outputText: string = '';
   inputs: { tag: string, replace: string }[] = [];
-  // Method to modify the input text.
-  // tagList: { tag: string, replacement: string, selected: boolean }[] = [];
-  // selectAll = false;
-  tagList: any[] = []; // Define your tag list here
-  selectAll: boolean = false; // Initialize selectAll to false
+  tagList: any[] = [];
+  selectAll: boolean = false;
 
-  // Toggle select all checkboxes
+  // Select all checkboxes
   toggleSelectAll() {
     this.selectAll = !this.selectAll;
-  
     this.tagList.forEach((tagObj) => (tagObj.selected = this.selectAll));
-
   }
-  
 
+  // Check the status of checkboxes (If selected or not for the Select-all Button)
   checkStatus() {
     const selectedCount = this.tagList.filter((tagObj) => tagObj.selected).length;
-    if (selectedCount == 0 ) {
-      this.selectAll = false;
-    } else {
-          this.selectAll = true;
-    }
+    this.selectAll = selectedCount > 0;
     console.log('selectAll:', this.selectAll);
   }
 
-  
-  
   // Add a new tag to the list
   addTag() {
     this.tagList.push({ tag: '', replacement: '', selected: false });
@@ -47,57 +36,43 @@ export class AppComponent {
     this.tagList.pop();
   }
 
-  // Function to determine if some checkboxes are selected
+  // Determine if some checkboxes are selected (for Minus Sign of Select-all Button)
   someComplete(): boolean {
     const selectedCount = this.tagList.filter((tagObj) => tagObj.selected).length;
     return selectedCount > 0 && selectedCount < this.tagList.length;
-
   }
-  
-    replaceTags() {
+
+  // Replace tags in input text
+  replaceTags() {
     let outputText = this.inputText;
-  
+
     for (const tagObj of this.tagList) {
       const tag = tagObj.tag;
       const replacement = tagObj.replacement;
-      const selected = tagObj.selected;   // checkbox
-  
+      const selected = tagObj.selected;
+
       if (tag && replacement && selected) {
-        // Sucht nach {tag} in ABNF-Format und ersetzt es mit der angegebenen Ersetzung
+        // Search for {tag} in ABNF format and replace it with the specified replacement
         const tagPattern = new RegExp(`\\{${tag}\\}`, 'g');
         const tagMatches = outputText.match(tagPattern);
-  
+
         if (tagMatches) {
           for (const match of tagMatches) {
-              // Überprüfe, ob das Tag durch \{tag} escaped ist
-              if (outputText.includes(`\\${match}`)) {
-                outputText = outputText.replace(`\\${match}`, `{${tag}}`);
-              } else {
-                const replacementWithoutBraces = replacement.replace(/^{(.*)}$/, '$1');
-                outputText = outputText.replace(match, replacementWithoutBraces);
-
-                // outputText = outputText.replace(match, replacement);
-              }
-
+            // Check if the tag is escaped as \{tag}
+            if (outputText.includes(`\\${match}`)) {
+              outputText = outputText.replace(`\\${match}`, `{${tag}}`);
+            } else {
+              const replacementWithoutBraces = replacement.replace(/^{(.*)}$/, '$1');
+              outputText = outputText.replace(match, replacementWithoutBraces);
+            }
           }
         }
       }
     }
-    outputText = outputText.replace(/\\([^{}\\])/g, "$1");
-    // Correctly handle the case of \\ to be replaced with a single backslash
-    outputText = outputText.replace(/\\\\+/g, "\\");
 
-  
-  
+    // Correctly handle the case of \\ to be replaced with a single backslash
+    outputText = outputText.replace(/\\([^{}\\])/g, "$1");
     this.outputText = outputText;
   }
-  
 
-  
-
-  addInputFields() {
-    this.inputs.push({ tag: '', replace: '' });
-  }
-
-  }
-
+}

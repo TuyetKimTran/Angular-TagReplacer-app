@@ -1,58 +1,63 @@
 #center-all {
-  /* Text zentrieren */
   text-align: center;
-
-  /* Inhalt vertikal mittig platzieren */
-  display: -webkit-flex;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
 }
 
 .inside {
-  /* Container horizontal mittig platzieren */
   margin: auto;
 }
 
-
 h1 {
+  font-weight: 500;
+  text-align: left;
   margin-top: 50px;
-  text-align: left; 
-  font-weight: 500; 
 }
 
 .formfield {
   width: 478px;
+  text-align: center; 
   margin: 0 auto; /* Center the form horizontally */
-  text-align: center; /* Center text inside the form */
 }
-textarea {
-  resize: vertical;
-  min-height: 100px; 
 
+textarea {
+  min-height: 100px;
+  resize: vertical;
 }
 
 .formfield-width {
   width: 100%;
-
 }
 
-.replacements-add-remove-button{
-  text-align: left; 
+.replacements-add-remove-button {
+  text-align: left;
 }
-
 
 .replacement-label {
   margin-right: 10px;
-
 }
 
 .add-button {
   margin-right: 20px;
+}
+
+.tag-row {
+  display: flex;
+  align-items: baseline;
+  font-size: 18px;
+  margin-top: 10px;
+  color: #5c5c5c;
+}
+
+.tag-replacement {
+  display: flex;
+  margin-right: 196px;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px; /* gap between input fields */
+  width: 100%; 
 }
 
 .replace-button {
@@ -61,29 +66,6 @@ textarea {
 }
 
 
-.tag-row {
-  display: flex;
-  margin-top: 10px;
-  align-items: baseline;
-  font-size: 18px;
-  color: #5c5c5c;
-}
-
-.input-container {
-  display: flex;
-  gap: 10px; /* Adjust the gap between input fields */
-  width: 100%; /* Set the width of the input container */
-}
-
-.tag-replacement{
-  display: flex;
-  margin-right: 196px;
-}
-
-
-/* Ändere die Schriftfarbe auf Schwarz von disabled Output */
 ::ng-deep .mdc-text-field--disabled .mdc-text-field__input {
-  color: black !important; 
+  color: black !important;
 }
-
-
